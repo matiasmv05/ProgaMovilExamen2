@@ -16,4 +16,8 @@ class TareasRepositoryImpl(
     override suspend fun agregarTarea(titulo: String) {
         dataSource.agregarTarea(titulo)
     }
+
+    override suspend fun actualizarEstadoTarea(id: String, completada: Boolean) {
+        dataSource.actualizarEstadoTarea(id, completada)
+    }
 }

@@ -1,5 +1,6 @@
 package org.ucb.appp1.tareas.presentation.screen
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -11,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import org.koin.compose.viewmodel.koinViewModel
 import org.ucb.appp1.tareas.presentation.viewmodel.TareasViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TareasScreen(viewModel: TareasViewModel = koinViewModel()) {
     val state by viewModel.state.collectAsState()
@@ -67,7 +69,7 @@ fun TareasScreen(viewModel: TareasViewModel = koinViewModel()) {
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
-                        text = "🔕 Notificaciones silenciadas ",
+                        text = "🔕 Notificaciones silenciadas",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onErrorContainer,
                         modifier = Modifier.padding(12.dp)
@@ -75,10 +77,16 @@ fun TareasScreen(viewModel: TareasViewModel = koinViewModel()) {
                 }
             }
 
-            Text(
-                text = "Tareas (${state.tareas.size})",
-                style = MaterialTheme.typography.titleMedium
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Tareas (${state.tareas.size})",
+                    style = MaterialTheme.typography.titleMedium
+                )
+            }
 
             if (state.tareas.isEmpty()) {
                 Box(
@@ -102,9 +110,14 @@ fun TareasScreen(viewModel: TareasViewModel = koinViewModel()) {
                 ) {
                     items(state.tareas, key = { it.id }) { tarea ->
                         Card(
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { viewModel.toggleTarea(tarea) },
                             colors = CardDefaults.cardColors(
-                                containerColor = MaterialTheme.colorScheme.surface
+                                containerColor = if (tarea.completada)
+                                    MaterialTheme.colorScheme.surfaceVariant
+                                else
+                                    MaterialTheme.colorScheme.surface
                             ),
                             elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
                         ) {
@@ -121,11 +134,14 @@ fun TareasScreen(viewModel: TareasViewModel = koinViewModel()) {
                                     modifier = Modifier.weight(1f)
                                 )
                                 Surface(
-                                    color = if (tarea.completada) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.secondaryContainer,
+                                    color = if (tarea.completada)
+                                        MaterialTheme.colorScheme.primaryContainer
+                                    else
+                                        MaterialTheme.colorScheme.secondaryContainer,
                                     shape = MaterialTheme.shapes.extraSmall
                                 ) {
                                     Text(
-                                        text = if (tarea.completada) "Completada" else "Pendiente",
+                                        text = if (tarea.completada) "✓ Completada" else "Pendiente",
                                         style = MaterialTheme.typography.labelSmall,
                                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                                     )

@@ -6,6 +6,7 @@ import org.ucb.appp1.exchange.domain.usecase.ObserveExchangeUseCase
 import org.ucb.appp1.signin.domain.usecase.AuthenticateUseCase
 import org.ucb.appp1.tareas.domain.usecase.AddTareaUseCase
 import org.ucb.appp1.tareas.domain.usecase.ObserveTareasUseCase
+import org.ucb.appp1.tareas.domain.usecase.UpdateTareaStatusUseCase
 import org.ucb.appp1.userinformation.domain.usecase.FindAliasUseCase
 
 val domainModule = module {
@@ -14,4 +15,5 @@ val domainModule = module {
     singleOf(::ObserveExchangeUseCase)
     singleOf(::ObserveTareasUseCase)
     singleOf(::AddTareaUseCase)
+    singleOf(::UpdateTareaStatusUseCase)
 }

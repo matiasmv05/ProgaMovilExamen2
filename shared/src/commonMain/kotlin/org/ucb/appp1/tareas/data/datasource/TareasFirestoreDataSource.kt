@@ -16,7 +16,12 @@ class TareasFirestoreDataSource {
                 try {
                     doc.data<Tarea>().copy(id = doc.id)
                 } catch (e: Exception) {
-                    Tarea(id = doc.id, titulo = doc.get<String>("titulo") ?: "")
+                    Tarea(
+                        id = doc.id,
+                        titulo = doc.get<String>("titulo") ?: "",
+                        completada = doc.get<Boolean>("completada") ?: false,
+                        timestamp = doc.get<Long>("timestamp") ?: 0L
+                    )
                 }
             }
         }
@@ -29,5 +34,9 @@ class TareasFirestoreDataSource {
             timestamp = kotlinx.datetime.Clock.System.now().toEpochMilliseconds()
         )
         tareasCollection.add(tarea)
+    }
+
+    suspend fun actualizarEstadoTarea(id: String, completada: Boolean) {
+        tareasCollection.document(id).update(mapOf("completada" to completada))
     }
 }

@@ -6,4 +6,5 @@ import org.ucb.appp1.tareas.domain.model.Tarea
 interface TareasRepository {
     fun observeTareas(): Flow<List<Tarea>>
     suspend fun agregarTarea(titulo: String)
+    suspend fun actualizarEstadoTarea(id: String, completada: Boolean)
 }

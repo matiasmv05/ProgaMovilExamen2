@@ -11,6 +11,7 @@ import org.ucb.appp1.tareas.domain.model.Tarea
 import org.ucb.appp1.tareas.domain.service.NotificationService
 import org.ucb.appp1.tareas.domain.usecase.AddTareaUseCase
 import org.ucb.appp1.tareas.domain.usecase.ObserveTareasUseCase
+import org.ucb.appp1.tareas.domain.usecase.UpdateTareaStatusUseCase
 
 data class TareasState(
     val tareas: List<Tarea> = emptyList(),
@@ -22,6 +23,7 @@ data class TareasState(
 class TareasViewModel(
     private val observeTareasUseCase: ObserveTareasUseCase,
     private val addTareaUseCase: AddTareaUseCase,
+    private val updateTareaStatusUseCase: UpdateTareaStatusUseCase,
     private val notificationService: NotificationService
 ) : ViewModel() {
 
@@ -68,6 +70,12 @@ class TareasViewModel(
                 addTareaUseCase(title)
                 _state.update { it.copy(newTaskTitle = "") }
             }
+        }
+    }
+
+    fun toggleTarea(tarea: Tarea) {
+        viewModelScope.launch {
+            updateTareaStatusUseCase(tarea.id, !tarea.completada)
         }
     }
 

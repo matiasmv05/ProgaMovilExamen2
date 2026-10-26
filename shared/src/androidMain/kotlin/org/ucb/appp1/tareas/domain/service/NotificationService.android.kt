@@ -35,7 +35,8 @@ actual class NotificationService(private val context: Context) {
             .setSmallIcon(android.R.drawable.ic_menu_agenda)
             .setContentTitle(title)
             .setContentText(message)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setDefaults(NotificationCompat.DEFAULT_ALL)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
 
@@ -58,11 +59,12 @@ actual class NotificationService(private val context: Context) {
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "Tareas Channel"
-            val descriptionText = "Notificaciones para nuevas tareas en Firestore"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val name = "Tareas Importantes"
+            val descriptionText = "Notificaciones emergentes para nuevas tareas en Firestore"
+            val importance = NotificationManager.IMPORTANCE_HIGH
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText
+                enableVibration(true)
             }
             val notificationManager: NotificationManager =
                 context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -71,7 +73,7 @@ actual class NotificationService(private val context: Context) {
     }
 
     companion object {
-        private const val CHANNEL_ID = "tareas_channel_id"
+        private const val CHANNEL_ID = "tareas_channel_id_v2"
         private const val KEY_MUTED = "notification_muted"
     }
 }

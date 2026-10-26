@@ -119,6 +119,8 @@ kotlin {
             implementation(libs.androidx.room3.runtime)
             implementation(libs.androidx.sqlite.bundled)
             implementation(libs.firebase.database)
+            implementation(libs.firebase.firestore)
+            implementation(libs.kotlinx.datetime)
             implementation(libs.wire.runtime)
             implementation(libs.wire.grpc.client)
             implementation(libs.coil.compose)

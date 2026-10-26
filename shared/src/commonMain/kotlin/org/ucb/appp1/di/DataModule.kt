@@ -10,6 +10,9 @@ import org.ucb.appp1.movies.data.dao.DollarDao
 import org.ucb.appp1.movies.data.datasource.DollarLocalDataSource
 import org.ucb.appp1.movies.data.repository.DollarRepositoryImpl
 import org.ucb.appp1.movies.domain.repository.DollarRepository
+import org.ucb.appp1.tareas.data.datasource.TareasFirestoreDataSource
+import org.ucb.appp1.tareas.data.repository.TareasRepositoryImpl
+import org.ucb.appp1.tareas.domain.repository.TareasRepository
 import org.ucb.appp1.userinformation.data.datasource.GithubRemoteDataSource
 import org.ucb.appp1.userinformation.data.repository.GithubRepositoryImpl
 import org.ucb.appp1.userinformation.data.service.GitHubApiService
@@ -26,4 +29,7 @@ val dataModule = module {
 
     singleOf(::RealTimeDataBase)
     single<ExchangeRepository> { ExchangeRepositoryImpl(get()) }
+
+    singleOf(::TareasFirestoreDataSource)
+    single<TareasRepository> { TareasRepositoryImpl(get()) }
 }

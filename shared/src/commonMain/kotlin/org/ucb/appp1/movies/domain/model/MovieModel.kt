@@ -1,10 +1,7 @@
 package org.ucb.appp1.movies.domain.model
 
-import org.ucb.appp1.movies.domain.vo.PosterPath
-
 data class MovieModel(
+    val id: Int,
     val title: String,
-    val description: String,
-    val posterPath: PosterPath
-
+    val overview: String
 )

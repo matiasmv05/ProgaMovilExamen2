@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1046025055613",
+    "firebase_url": "https://segundoelemento-default-rtdb.firebaseio.com",
+    "project_id": "segundoelemento",
+    "storage_bucket": "segundoelemento.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046025055613:android:eb36f01d92e25a5fef3014",
+        "android_client_info": {
+          "package_name": "org.ucb.appp1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEhdMhElgBJVlH4FTFG6cuJiZin3u5gCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

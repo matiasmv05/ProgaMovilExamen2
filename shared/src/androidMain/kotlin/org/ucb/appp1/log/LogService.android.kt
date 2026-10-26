@@ -23,9 +23,7 @@ actual class LogService actual constructor(
     private val logService =
         grpcClient.create(LogServiceClient::class)
 
-    actual suspend fun sendLogs(
-        request: LogRequest
-    ): GrpcCall<LogRequest, LogResponse> {
-        return logService.send(request)
+    actual fun sendLogs(): GrpcCall<LogRequest, LogResponse> {
+        return logService.send()
     }
 }

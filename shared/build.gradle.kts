@@ -112,16 +112,19 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
-            implementation("io.arrow-kt:arrow-core:1.2.1")
+            implementation(libs.arrow.core)
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.androidx.room3.runtime)
             implementation(libs.androidx.sqlite.bundled)
             implementation(libs.firebase.database)
-            implementation("edu.ucb.ds:shared:1.0.0-SNAPSHOT")
             implementation(libs.wire.runtime)
             implementation(libs.wire.grpc.client)
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network.ktor3)
+            implementation(libs.sentry.kmp)
+            implementation(libs.androidx.datastore.preferences)
 
         }
         commonTest.dependencies {
@@ -153,7 +156,7 @@ tasks.register("downloadLocaliseTranslations") {
     doLast {
         val apiKey = locoApiKey.get()
 
-        if (apiKey == "TU_API_TOKEN_AQUI") {
+        if (apiKey == "TU_API_KEY_AQUI") {
             throw GradleException("Por favor, configura LOCO_API_KEY en tu archivo gradle.properties de la raíz.")
         }
 

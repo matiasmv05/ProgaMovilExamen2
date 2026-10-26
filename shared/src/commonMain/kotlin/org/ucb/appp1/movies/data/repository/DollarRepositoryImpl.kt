@@ -6,7 +6,7 @@ import org.ucb.appp1.movies.domain.repository.DollarRepository
 
 class DollarRepositoryImpl(
     val localDataSource: DollarLocalDataSource
-): DollarRepository {
+) : DollarRepository {
     override suspend fun getList(): List<DollarModel> {
         return localDataSource.getList()
     }

@@ -10,5 +10,6 @@ import org.ucb.appp1.exchange.presentation.screen.ExchangeScreen
 fun App() {
     MaterialTheme {
         ExchangeScreen()
+        org.ucb.appp1.localnotifications.presentation.screen.LocalNotificationsEntry()
     }
 }
